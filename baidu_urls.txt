@@ -1,2 +1,2 @@
-https://www.ovasty.com/2021/01/15/hello-world.html
-https://www.ovasty.com/2021/01/01/mixpanel.html
+https://www.ovasty.com/20210115/hello-world.html
+https://www.ovasty.com/20210101/mixpanel.html
