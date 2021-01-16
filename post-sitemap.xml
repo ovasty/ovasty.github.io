@@ -9,7 +9,7 @@
 
 
     <url>
-        <loc>https://www.ovasty.com/20210115/hello-world.html</loc>
+        <loc>https://www.ovasty.com/2021/01/15/hello-world.html</loc>
         <lastmod>2021-01-15T01:50:12.057Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -17,7 +17,7 @@
     </url>
 
     <url>
-        <loc>https://www.ovasty.com/20210101/mixpanel.html</loc>
+        <loc>https://www.ovasty.com/2021/01/01/mixpanel.html</loc>
         <lastmod>2021-01-14T06:00:46.997Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
