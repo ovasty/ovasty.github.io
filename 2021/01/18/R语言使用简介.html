@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>R语言使用简介 - 面子和里子</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="面子和里子"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="面子和里子"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="R 的基本介绍R 语言基于 S 语言，是一种免费的用于数据分析的语言。 R系统从概念上分为两部分：  从 CRAN上下载的基础的R 系统； 其它  R 的功能基本上是由各种不同的 package 提供实现的:"><meta property="og:type" content="blog"><meta property="og:title" content="R语言使用简介"><meta property="og:url" content="https://www.ovasty.com/2021/01/18/R%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B.html"><meta property="og:site_name" content="面子和里子"><meta property="og:description" content="R 的基本介绍R 语言基于 S 语言，是一种免费的用于数据分析的语言。 R系统从概念上分为两部分：  从 CRAN上下载的基础的R 系统； 其它  R 的功能基本上是由各种不同的 package 提供实现的:"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.ovasty.com/img/og_image.png"><meta property="article:published_time" content="2021-01-18T15:37:59.000Z"><meta property="article:modified_time" content="2021-01-18T15:42:26.445Z"><meta property="article:author" content="ovasty"><meta property="article:tag" content="R"><meta property="article:tag" content="数据分析"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.ovasty.com/2021/01/18/R%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B.html"},"headline":"面子和里子","image":["https://www.ovasty.com/img/og_image.png"],"datePublished":"2021-01-18T15:37:59.000Z","dateModified":"2021-01-18T15:42:26.445Z","author":{"@type":"Person","name":"ovasty"},"description":"R 的基本介绍R 语言基于 S 语言，是一种免费的用于数据分析的语言。 R系统从概念上分为两部分：  从 CRAN上下载的基础的R 系统； 其它  R 的功能基本上是由各种不同的 package 提供实现的:"}</script><link rel="canonical" href="https://www.ovasty.com/2021/01/18/R%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?785a010ff4ffb4007a874c9d8d32d35e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><meta name="msvalidate.01" content="42D05432DD985ECD4C520925C5FFB24D"><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="面子和里子" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-01-18T15:37:59.000Z" title="2021-01-18T15:37:59.000Z">2021-01-18</time>发表</span><span class="level-item"><time dateTime="2021-01-18T15:42:26.445Z" title="2021-01-18T15:42:26.445Z">2021-01-18</time>更新</span><span class="level-item">19 分钟读完 (大约2849个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">R语言使用简介</h1><div class="content"><h1 id="R-的基本介绍"><a href="#R-的基本介绍" class="headerlink" title="R 的基本介绍"></a>R 的基本介绍</h1><p>R 语言基于 S 语言，是一种免费的用于数据分析的语言。</p>
+<p>R系统从概念上分为两部分：</p>
+<ol>
+<li>从 CRAN上下载的基础的R 系统；</li>
+<li>其它</li>
+</ol>
+<p>R 的功能基本上是由各种不同的 package 提供实现的:</p>
+<a id="more"></a>
+<ul>
+<li>base包提供 R 的基本功能；</li>
+<li>R 的基础部分包括这些 packages：utils, stats, datasets, graphics, grDevices, grid, methods, tools, parallel, compiler, splines, tcltk, stats4</li>
+<li>其它一些推荐安装的 packages：boot, class, cluster, codetools, foreign, KernSmooth, lattice, mgcv, nlme, rpart, survival, MASS, spatial, nnet, Matrix</li>
+</ul>
+<h1 id="R-的-Input-和-Evaluation"><a href="#R-的-Input-和-Evaluation" class="headerlink" title="R 的 Input 和 Evaluation"></a>R 的 Input 和 Evaluation</h1><p>R 使用**&lt;-<strong>符号作为赋值操作，</strong>=**也可以。</p>
+<p>如<br><code>x&lt;-1</code><br>可以使用<code>x</code>或<code>print(x)</code>显示 x 的值。</p>
+<ul>
+<li>x：自动显示</li>
+<li>print（x）：明确指定显示</li>
+</ul>
+<p>当输入一个表达式变量并回车后，变量即被 evaludated ，并返回变量的结果。</p>
+<p><code>x&lt;-1:20</code></p>
+<p>**:**符号表示建立一个整形的序列</p>
+<h1 id="R-的数据类型"><a href="#R-的数据类型" class="headerlink" title="R 的数据类型"></a>R 的数据类型</h1><h2 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h2><p>R的5种基本（atomic）的数据类型：</p>
+<ol>
+<li>character</li>
+<li>numeric（real numbers）</li>
+<li>integer</li>
+<li>complex</li>
+<li>logical（True/False）</li>
+</ol>
+<p>常用的对象类型有 vector，vector 只能包含相同的数据类型，但有一个例外，就是 list，它以 vector 形式显示，但可以保存不同的数据类型。</p>
+<p>空 vector 可以用**vector()**表示。</p>
+<h2 id="Numbers"><a href="#Numbers" class="headerlink" title="Numbers"></a>Numbers</h2><p>R 中的数字默认为numberic 类型，即双精度浮点数，如果是整型数据，需要指定 L 后缀。例如1是一个numberic 对象，而1L 则是integer。</p>
+<p>Inf 代表无限，1/0的结果是 Inf。Inf 可以用来计算中，如1/Inf=0。</p>
+<p>NaN代表未定义的，如0/0，也可以代表缺失的值。</p>
+<h2 id="Vectors"><a href="#Vectors" class="headerlink" title="Vectors"></a>Vectors</h2><p>建立 vector对象，可以使用 **c()**函数进行，如：</p>
+<pre><code>x&lt;-c(0.5,0.6)        ##numeric
+x&lt;-c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)    ##character
+x&lt;-c(TRUE,FALSE)    ##logical
+x&lt;-c(12:23)        ##integer
+x&lt;-c(1+0i,2-4i)    ##complex</code></pre>
+<p>也可以用vector()初始化对象，如：</p>
+<pre><code>x&lt;-vector(&quot;numeric&quot;,length=10)
+x
+[1] 0 0 0 0 0 0 0 0 0 0</code></pre>
+<p>当不同的对象类型混合在一个 vector 里的时候，会发生coercion（胁迫），将 vector 内的对象转换成相同类型的对象。</p>
+<pre><code>y=c(1.7,&quot;a&quot;)
+y
+[1] &quot;1.7&quot; &quot;a&quot;</code></pre>
+<p>可以看到，numeric 类型的1.7被强制转换成了”1.7”。这种是自动的转换数据类型。</p>
+<p>还可以指定明确的转换类型，使用*<em>as.**</em>来进行转换：</p>
+<pre><code>x=0:6
+class(x)
+结果：
+[1] &quot;integer&quot;
+
+as.logical(x)
+结果：
+[1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p>对于无意义的指定转换，结果为NA：</p>
+<pre><code>x &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+as.numeric(x)
+[1]NA NA NA</code></pre>
+<h2 id="Matrics"><a href="#Matrics" class="headerlink" title="Matrics"></a>Matrics</h2><p>矩阵是有维度属性的vector，矩阵 matrics 的 dimension 属性是由一个长度为2的整数vector(nrow,ncol)组成。</p>
+<p>创建 matrics 的几种方法：</p>
+<pre><code>m = matrix(nrow=2,ncol=3)
+
+    [,1] [,2] [,3] 
+[1,] NA NA NA 
+[2,] NA NA NA
+
+m = matrix(1:6,nrow = 2, ncol = 3)
+
+    [,1] [,2] [,3] 
+[1,] 1     3     5 
+[2,] 2     4     6
+
+m = 1:10
+dim(m) = c(2,5)
+    [,1] [,2] [,3] [,4] [,5] 
+[1,] 1     3     5     7     9 
+[2,] 2     4     6     8     10</code></pre>
+<p>还可以使用 cbind()和rbind()把 vector 拼成一个 matrics：</p>
+<pre><code>x = 1:3
+y = 10:12
+cbind(x,y)
+    x    y 
+[1,] 1 10 
+[2,] 2 11 
+[3,] 3 12
+
+rbind(x,y)
+    [,1] [,2] [,3] 
+x    1    2    3 
+y   10     11     12</code></pre>
+<h2 id="Factors"><a href="#Factors" class="headerlink" title="Factors"></a>Factors</h2><p>Factors用来展现分类的数据，它可以是有顺序的也可以无序。可以把他们看作是一个整数的向量，其中每个整数有一个标签。<br>（类似枚举类型）</p>
+<pre><code>x &lt;- factor(c(&quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;))
+[1] yes yes no yes no
+
+table(x)
+unclass(x)</code></pre>
+<p>Factors中的元素顺序可以通过 level 来设定，</p>
+<pre><code>x &lt;- factor(c(&quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;), 
+                   levels = c(&quot;yes&quot;, &quot;no&quot;))</code></pre>
+<h2 id="Missing-Values"><a href="#Missing-Values" class="headerlink" title="Missing Values"></a>Missing Values</h2><p>NA 和 NAN 用来代表未定义的数学操作</p>
+<p>is.na()判断是否为 NA<br>is.nan()判断是否为 NaN</p>
+<p>NA 值也有一个类型，所以存在integer的 NA，character 的 NA 等<br>NaN 也是 NA，但 NA 不是 NaN</p>
+<pre><code>x&lt;-c(1,2,NA,10,3)
+is.na(x)
+[1] FALSE FALSE TRUE FALSE FALSE
+
+is.nan(x)
+[1] FALSE FALSE FALSE FALSE FALSE
+
+x&lt;-c(1,2,NaN,NA,4)
+is.na(x)
+[1] FALSE FALSE TRUE TRUE FALSE
+
+is.nan(x)
+[1] FALSE FALSE TRUE FALSE FALSE</code></pre>
+<h2 id="Data-Frames"><a href="#Data-Frames" class="headerlink" title="Data Frames"></a>Data Frames</h2><p>Data Frames用来存储表格数据(tabular data)</p>
+<p>通常，data frames 是由read.table()或read.csv()创建的。<br>可以使用data.matrix()转换为 matrix</p>
+<pre><code>x &lt;- data.frame(foo = 1:4, bar = c(T, T, F, F)) &gt;x
+  foo bar
+1 1 TRUE
+2 2 TRUE
+3 3 FALSE
+4 4 FALSE
+
+nrow(x) 
+[1] 4
+
+ncol(x) 
+[1] 2</code></pre>
+<h2 id="Names"><a href="#Names" class="headerlink" title="Names"></a>Names</h2><p>可以对R 的对象进行命名操作</p>
+<pre><code>x&lt;-1:3   ## 针对 vector
+names(x)
+NULL
+
+names(x) &lt;- c(&quot;foo&quot;, &quot;bar&quot;, &quot;norf&quot;) 
+x
+foo bar norf
+1    2    3
+
+names(x)
+[1] &quot;foo&quot; &quot;bar&quot; &quot;norf&quot;
+
+x&lt;-list(a=1,b=2,c=3)  ## 针对 list
+
+m &lt;- matrix(1:4, nrow = 2, ncol = 2)  ##针对 matrices
+dimnames(m) &lt;- list(c(&quot;a&quot;, &quot;b&quot;), c(&quot;c&quot;, &quot;d&quot;))</code></pre>
+<h1 id="R读写数据"><a href="#R读写数据" class="headerlink" title="R读写数据"></a>R读写数据</h1><ul>
+<li><strong>read.table</strong>, <strong>read.csv</strong>用来读取表格数据，对应write.table</li>
+<li><strong>readLines</strong>读取文本文件的行,对应writeLines</li>
+<li><strong>source</strong> 读取 R 的 code 文件，对应dump</li>
+<li><strong>dget</strong>, 读取 R 文件，对应dput</li>
+<li><strong>load</strong>, 读取workspaces文件，对应save</li>
+<li><strong>unserialize</strong>, 读取R对象，对应serialize</li>
+</ul>
+<h2 id="read-table"><a href="#read-table" class="headerlink" title="read.table"></a>read.table</h2><p>read.table是最常用的读取数据的方法，有以下的参数：</p>
+<ul>
+<li><strong>file</strong>：文件名</li>
+<li><strong>header</strong>：logical值，是否有 header 行</li>
+<li><strong>sep</strong>：列分隔字符</li>
+<li><strong>colClasses</strong>： 一个character向量，说明数据集中每一列的类型</li>
+<li><strong>nrows</strong>：行数</li>
+<li><strong>comment.char</strong>：注释字符</li>
+<li><strong>skip</strong>：从文件头跳过的行数</li>
+<li><strong>stringsAsFactors</strong>：是否把字符变量转化为 factors</li>
+</ul>
+<p>读取方法：</p>
+<pre><code>data &lt;- read.table(&quot;foo.txt&quot;)</code></pre>
+<p>在读取过程中，R 会：</p>
+<ul>
+<li>会跳过所有以#开头的行</li>
+<li>会显示多少行，分配了多少内存</li>
+<li>说明每一列的变量类型</li>
+<li>read.csv()也是一种 read.table()，只不过默认以，为分隔符 </li>
+</ul>
+<p>对于大数据，有一些方法可以提高读取的速度：</p>
+<ol>
+<li>设置comment.char = “”，如果没有注释行</li>
+<li>使用 colClasses参数，指定每一列的类型，这样读取速度可以提高一倍。如所有的列都是 numeric，可以设置 colClasses=”numeric”。</li>
+</ol>
+<p>另一个 dirty 方法，可以解决不同列类型的表:</p>
+<pre><code>initial &lt;- read.table(&quot;datatable.txt&quot;, nrows = 100) 
+classes &lt;- sapply(initial, class)
+tabAll &lt;- read.table(&quot;datatable.txt&quot;,colClasses = classes)</code></pre>
+<h2 id="读取其它文件"><a href="#读取其它文件" class="headerlink" title="读取其它文件"></a>读取其它文件</h2><p>file：读取文件<br>gzfile：读取 gz 文件<br>bzfile：读取 bz 文件<br>url：读取 url</p>
+<pre><code>con &lt;- file(&quot;foo.txt&quot;, &quot;r&quot;) 
+data &lt;- read.csv(con) 
+close(con)
+
+与
+data &lt;- read.csv(&quot;foo.txt&quot;)
+相同</code></pre>
+<h1 id="Subsetting-子集"><a href="#Subsetting-子集" class="headerlink" title="Subsetting 子集"></a>Subsetting 子集</h1><p>[]：返回与原始数据相同的类，可一次读取多个值<br>[[]]：从 list 或 data frame 中读取数据<br>$：用 name 方法从 list或 data frame 中读取数据</p>
+<p>三中读取值的方式的不同：</p>
+<pre><code>x &lt;- list(foo = 1:4, bar = 0.6)
+x[1]
+$foo
+[1]1234
+
+x[[1]]
+[1]1234
+
+x$bar
+[1] 0.6
+x[[&quot;bar&quot;]]
+[1] 0.6
+x[&quot;bar&quot;]
+$bar
+[1] 0.6</code></pre>
+<p>还可以用 vector 取值：</p>
+<pre><code>x &lt;- list(foo = 1:4, bar = 0.6, baz = &quot;hello&quot;)
+x[c(1, 3)]
+$foo
+[1]1234
+
+$baz
+[1] &quot;hello&quot;</code></pre>
+<p>[[索引值可以为变量，而$只能使用常量名称：</p>
+<pre><code>x &lt;- list(foo = 1:4, bar = 0.6, baz = &quot;hello&quot;)
+name &lt;- &quot;foo&quot;
+x[[name]]
+[1]1234
+
+x$name
+NULL
+
+x$foo
+[1] 1 2 3 4</code></pre>
+<p>The [[ can take an integer sequence.</p>
+<pre><code>x &lt;- list(a = list(10, 12, 14), b = c(3.14, 2.81))
+x[[c(1, 3)]]
+[1] 14
+x[[1]][[3]]
+[1] 14
+
+x[[c(2, 1)]]
+[1] 3.14</code></pre>
+<p>Matrix使用[i,j]形式取值：</p>
+<pre><code>x &lt;- matrix(1:6, 2, 3)
+x[1, 2]
+[1] 3
+
+行或列可以缺失，就是取整列或整行：
+
+x[1,]
+[1]135
+
+x[,2]
+[1]34</code></pre>
+<p>当对 matrix 取单一元素值的时候，加上drop = FALSE，可以使返回值从 vector 变成 matrix：</p>
+<pre><code> x &lt;- matrix(1:6, 2, 3)
+ x[1, 2]
+ [1] 3
+
+ x[1, 2, drop = FALSE]
+     [,1] 
+ [1,] 3</code></pre>
+<p>取整列的时候也是一样，drop=FALSE 可以把结果变成 matrix：</p>
+<pre><code>x &lt;- matrix(1:6, 2, 3)
+x[1, , drop = FALSE]
+
+    [,1] [,2] [,3] 
+[1,] 1     3     5</code></pre>
+<p>Partial Matching 部分匹配：</p>
+<p>[[和$取值时允许参数部分匹配，如：</p>
+<pre><code> x &lt;- list(aardvark = 1:5)
+
+ x$a
+ [1]12345
+
+ x[[&quot;a&quot;]]
+ NULL     
+
+ x[[&quot;a&quot;, exact = FALSE]]
+ [1]12345</code></pre>
+<p>删除 NA 值的方法：</p>
+<pre><code>x&lt;-c(1,2,NA,4,NA,5)
+bad &lt;- is.na(x)
+x[!bad]
+[1]1245</code></pre>
+<p>complete.cases(x, y)</p>
+<p>vector 的操作：</p>
+<pre><code>x&lt;-1:4;y&lt;-6:9
+x+y
+[1]791113
+
+x&gt;2
+[1] FALSE FALSE TRUE TRUE
+
+x &lt;- matrix(1:4, 2, 2); y &lt;- matrix(rep(10, 4), 2, 2)
+x * y
+    [,1] [,2] 
+[1,] 10 30 
+[2,] 20 40</code></pre>
+<h1 id="R-语言的控制结构"><a href="#R-语言的控制结构" class="headerlink" title="R 语言的控制结构"></a>R 语言的控制结构</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><p>if-else 结构</p>
+<pre><code>if(&lt;condition&gt;) &#123;
+    ## do something
+&#125;else&#123;
+    ## do something else
+&#125;
+
+if(&lt;condition1&gt;) &#123;
+    ## do something
+&#125; else if(&lt;condition2&gt;) &#123;
+    ## do something different
+&#125;else&#123;
+    ## do something different
+&#125;</code></pre>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>for 循环</p>
+<pre><code>x &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
+for(i in 1:4) &#123;
+    print(x[i])
+&#125;
+
+for(i in seq_along(x)) 
+&#123; 
+    print(x[i])
+&#125;
+
+for(letter in x) &#123;
+    print(letter)
+&#125;</code></pre>
+<p>while 循环：</p>
+<pre><code>count &lt;- 0 
+while(count &lt; 10) &#123;
+    print(count)
+    count &lt;- count + 1
+&#125;    </code></pre>
+<p>repeat 循环：</p>
+<pre><code>x0&lt;-1 
+tol &lt;- 1e-8
+
+repeat &#123;
+    x1 &lt;- computeEstimate()
+    if(abs(x1 - x0) &lt; tol) &#123; 
+        break    
+    &#125;else&#123; 
+        x0&lt;-x1
+    &#125; 
+&#125;</code></pre>
+<p>next 用于跳过本次循环，开始下一个循环；return 是直接返回</p>
+<h1 id="函数-function"><a href="#函数-function" class="headerlink" title="函数 function"></a>函数 function</h1><p>格式为：</p>
+<pre><code>f &lt;- function(&lt;arguments&gt;) &#123;
+    ## Do something interesting
+&#125;</code></pre>
+<p>函数的参数可以设定默认值</p>
+<p>参数具有 lazy evaluation 的特性，如果某个参数在函数中没有用到，那调用时可以不传入该参数，函数不会报错。</p>
+<p>…参数一般用来传递给内部调用的其它函数</p>
+<h1 id="Scoping-Rules"><a href="#Scoping-Rules" class="headerlink" title="Scoping Rules"></a>Scoping Rules</h1><h2 id="符号与值的绑定"><a href="#符号与值的绑定" class="headerlink" title="符号与值的绑定"></a>符号与值的绑定</h2><p>R把一个符号绑定到一个值上，是通过一系列的 environments找到合适的值。当在 shell 下使用一个变量时，大概的过程是：</p>
+<ol>
+<li>查找全局的 environment， 是否有值匹配该变量符号；</li>
+<li>在 search list 中，查找每个 package 的 namespace</li>
+</ol>
+<p>search()可以查找当前的 search list 情况：</p>
+<ul>
+<li>global environment或user workspace通常是 search list 的第一个元素，base包总是最后一个元素。</li>
+<li>当用户使用 library 加载时，该 package 的 namespace 会在 search list 的第2位上，其它的元素会相应后移。</li>
+<li>R 对于函数和非函数有不同的 namespace，所以会同时有一个叫 c 的对象和叫 c 的函数。</li>
+</ul>
+<h2 id="Scoping-Rules-1"><a href="#Scoping-Rules-1" class="headerlink" title="Scoping Rules"></a>Scoping Rules</h2><p>scoping rules决定了在函数中，一个值如何与 free variable建立关联。</p>
+<p>R 使用lexical scoping和static scoping，一个可选的方案dynamic scoping。</p>
+<p>Scoping Rules 决定了 R如何使用search list为绑定符号和值。</p>
+<h2 id="Lexical-Scoping"><a href="#Lexical-Scoping" class="headerlink" title="Lexical Scoping"></a>Lexical Scoping</h2><p>如下面的函数：</p>
+<pre><code>f &lt;- function(x, y) &#123; 
+    x^2+y/z
+&#125;</code></pre>
+<p>变量 z 在函数参数中未定义，但是直接使用了，这种变量称为free variable。<br>Scoping Rules定义了这种 free variable 是如何赋值的</p>
+<p>Lexical scoping的意思是：<br>the values of free variables are searched for in the environment in which the function was defined.</p>
+<p>environment 是一组键值对的组合，a collection of (symbol, value) pairs<br>每个 environment 有它的父 environment，一个environment 可能有多个子 environment；<br>没有父 environment 的 environment，是一个空的 environment<br>function+environment = a closure or function closure</p>
+<p>查找 free variable 的值的过程：</p>
+<ul>
+<li>If the value of a symbol is not found in the environment in which a function was defined, then the<br>search is continued in the parent environment.</li>
+<li>The search continues down the sequence of parent environments until we hit the top-level environment; this usually the global environment (workspace) or the namespace of a package.</li>
+<li>After the top-level environment, the search continues down the search list until we hit the empty environment. If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.</li>
+</ul>
+<h1 id="R-Scoping-Rules"><a href="#R-Scoping-Rules" class="headerlink" title="R Scoping Rules"></a>R Scoping Rules</h1><p>When a function is defined in the global environment and is subsequently called from the global environment, then the defining environment and the calling environment are the same. This can sometimes give the appearance of dynamic scoping.</p>
+<ul>
+<li>In R, all objects must be stored in memory</li>
+<li>All functions must carry a pointer to their respective defining environments, which could be anywhere</li>
+<li>In S-PLUS, free variables are always looked up in the global workspace, so everything can be stored on the disk because the “defining environment” of all functions is the same.</li>
+</ul>
+<p>Lexical scoping summary</p>
+<ul>
+<li>Objective functions can be “built” which contain all of the necessary data for evaluating the function</li>
+<li>No need to carry around long argument lists — useful for interactive and exploratory work.</li>
+<li>Code can be simplified and cleand up</li>
+</ul>
+<h1 id="Coding-Standards-for-R"><a href="#Coding-Standards-for-R" class="headerlink" title="Coding Standards for R"></a>Coding Standards for R</h1><ol>
+<li>Always use text files / text editor</li>
+<li>Indent your code</li>
+<li>Limit the width of your code (80 columns?)</li>
+<li>Limit the length of individual functions</li>
+</ol>
+<h1 id="Date-and-Time"><a href="#Date-and-Time" class="headerlink" title="Date and Time"></a>Date and Time</h1><p>日期用 Date 类表示，它的内部是记录自从1970-1-1开始的天数</p>
+<p>时间用POSIXct或者POSIXlt类表示，内部记录的是以从1970-1-1开始的秒数</p>
+<pre><code>x &lt;- as.Date(&quot;1970-01-01&quot;)</code></pre>
+<ul>
+<li>POSIXct is just a very large integer under the hood; it use a useful class when you want to store times in something like a data frame</li>
+<li>POSIXlt is a list underneath and it stores a bunch of other useful information like the day of the week, day of the year, month, day of the month</li>
+</ul>
+<p>Times can be coerced from a character string using the as.POSIXlt or as.POSIXct function.</p>
+<pre><code>x &lt;- Sys.time()
+[1] &quot;2013-01-24 22:04:14 EST&quot;
+
+p &lt;- as.POSIXlt(x)
+names(unclass(p))
+[1] &quot;sec&quot; &quot;min&quot; &quot;hour&quot; &quot;mday&quot; &quot;mon&quot;
+[6] &quot;year&quot; &quot;wday&quot; &quot;yday&quot; &quot;isdst&quot;
+p$sec
+[1] 14.34</code></pre>
+<p>strptime函数用来转换日期格式：</p>
+<pre><code>datestring &lt;- c(&quot;January 10, 2012 10:40&quot;, &quot;December 9, 2011 9:10&quot;) 
+x &lt;- strptime(datestring, &quot;%B %d, %Y %H:%M&quot;)
+x</code></pre>
+</div><div class="article-licensing box"><div class="licensing-title"><p>R语言使用简介</p><p><a href="https://www.ovasty.com/2021/01/18/R语言使用简介.html">https://www.ovasty.com/2021/01/18/R语言使用简介.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>ovasty</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-01-18</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/R/">R</a><a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/01/15/hello-world.html"><span class="level-item">Hello World</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="ovasty"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">ovasty</p><p class="is-size-6 is-block">面子和里子</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ovasty" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ovasty"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-01-18T15:37:59.000Z">2021-01-18</time></p><p class="title"><a href="/2021/01/18/R%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B.html">R语言使用简介</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-01-15T01:50:12.057Z">2021-01-15</time></p><p class="title"><a href="/2021/01/15/hello-world.html">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-01-01T12:52:34.000Z">2021-01-01</time></p><p class="title"><a href="/2021/01/01/mixpanel.html">mixpanel系统架构（译）</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/R/"><span class="tag">R</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="tag">分布式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="tag">大数据</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"><span class="tag">数据分析</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA/"><span class="tag">用户行为</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="面子和里子" height="28"></a><p class="is-size-7"><span>&copy; 2021 ovasty</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
