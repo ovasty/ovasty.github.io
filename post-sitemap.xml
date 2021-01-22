@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://www.ovasty.com/posts/helloworld.html</loc>
+        <lastmod>2021-01-22T09:09:49.346Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.ovasty.com/posts/toBproductmanager.html</loc>
         <lastmod>2021-01-22T09:03:46.840Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -35,14 +43,6 @@
     <url>
         <loc>https://www.ovasty.com/posts/mixpanelarchitecture.html</loc>
         <lastmod>2021-01-19T15:07:34.694Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.ovasty.com/posts/helloworld.html</loc>
-        <lastmod>2021-01-19T15:06:58.155Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
