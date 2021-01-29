@@ -9,6 +9,30 @@
 
 
     <url>
+        <loc>https://www.ovasty.com/posts/Rlanguage.html</loc>
+        <lastmod>2021-01-29T06:30:51.157Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.ovasty.com/posts/linuxshell.html</loc>
+        <lastmod>2021-01-29T06:29:08.808Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.ovasty.com/posts/toBproductmanager.html</loc>
+        <lastmod>2021-01-29T06:27:59.910Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.ovasty.com/posts/mavenmanual.html</loc>
         <lastmod>2021-01-29T06:10:51.449Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,32 +49,8 @@
     </url>
 
     <url>
-        <loc>https://www.ovasty.com/posts/linuxshell.html</loc>
-        <lastmod>2021-01-22T14:29:11.049Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.ovasty.com/posts/helloworld.html</loc>
         <lastmod>2021-01-22T09:09:49.346Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.ovasty.com/posts/toBproductmanager.html</loc>
-        <lastmod>2021-01-22T09:03:46.840Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.ovasty.com/posts/Rlanguage.html</loc>
-        <lastmod>2021-01-22T08:08:39.007Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
