@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://www.ovasty.com/posts/unittest.html</loc>
+        <lastmod>2021-02-06T11:54:58.943Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.ovasty.com/posts/vimmanual.html</loc>
         <lastmod>2021-02-06T11:45:50.243Z</lastmod>
         <changefreq>weekly</changefreq>
