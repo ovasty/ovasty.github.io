@@ -1,3 +1,4 @@
+https://www.ovasty.com/posts/kerberos.html
 https://www.ovasty.com/posts/unittest.html
 https://www.ovasty.com/posts/vimmanual.html
 https://www.ovasty.com/posts/learningscala.html
@@ -7,4 +8,3 @@ https://www.ovasty.com/posts/helloworld.html
 https://www.ovasty.com/posts/flumekafkasink.html
 https://www.ovasty.com/posts/mavenmanual.html
 https://www.ovasty.com/posts/linuxshell.html
-https://www.ovasty.com/posts/toBproductmanager.html
