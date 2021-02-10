@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://www.ovasty.com/posts/openldap.html</loc>
+        <lastmod>2021-02-10T15:30:20.225Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.ovasty.com/posts/learningscala.html</loc>
         <lastmod>2021-02-09T15:24:45.534Z</lastmod>
         <changefreq>weekly</changefreq>
