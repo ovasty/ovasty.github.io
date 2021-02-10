@@ -1,3 +1,4 @@
+https://www.ovasty.com/posts/centos6repo.html
 https://www.ovasty.com/posts/openldap.html
 https://www.ovasty.com/posts/kerberos.html
 https://www.ovasty.com/posts/unittest.html
@@ -7,4 +8,3 @@ https://www.ovasty.com/posts/gitmanual.html
 https://www.ovasty.com/posts/flumeinterceptor.html
 https://www.ovasty.com/posts/helloworld.html
 https://www.ovasty.com/posts/flumekafkasink.html
-https://www.ovasty.com/posts/mavenmanual.html
