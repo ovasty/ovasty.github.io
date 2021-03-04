@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>ES使用 - 面子和里子 - 大数据,分布式,数据仓库,人工智能,数字化转型,hadoop,spark,flink</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="面子和里子"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="面子和里子"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="ElasticSearch是面向文档的，即索引与查询的最小单元就是文档（Document）"><meta property="og:type" content="blog"><meta property="og:title" content="ES使用"><meta property="og:url" content="https://www.ovasty.com/posts/es.html"><meta property="og:site_name" content="面子和里子"><meta property="og:description" content="ElasticSearch是面向文档的，即索引与查询的最小单元就是文档（Document）"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.ovasty.com/img/og_image.png"><meta property="article:published_time" content="2021-03-04T14:43:06.000Z"><meta property="article:modified_time" content="2021-03-04T14:46:40.904Z"><meta property="article:author" content="ovasty"><meta property="article:tag" content="大数据"><meta property="article:tag" content="elasticsearch"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.ovasty.com/posts/es.html"},"headline":"面子和里子 - 大数据,分布式,数据仓库,人工智能,数字化转型,hadoop,spark,flink","image":["https://www.ovasty.com/img/og_image.png"],"datePublished":"2021-03-04T14:43:06.000Z","dateModified":"2021-03-04T14:46:40.904Z","author":{"@type":"Person","name":"ovasty"},"description":"ElasticSearch是面向文档的，即索引与查询的最小单元就是文档（Document）"}</script><link rel="canonical" href="https://www.ovasty.com/posts/es.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?785a010ff4ffb4007a874c9d8d32d35e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><meta name="msvalidate.01" content="42D05432DD985ECD4C520925C5FFB24D"><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><script data-ad-client="4289379616" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><meta name="keywords" content="大数据,elasticsearch"><script data-ad-client="ca-pub-5970825524747073" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><meta name="generator" content="Hexo 5.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="面子和里子 - 大数据,分布式,数据仓库,人工智能,数字化转型,hadoop,spark,flink" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-03-04T14:43:06.000Z" title="2021-03-04T14:43:06.000Z">2021-03-04</time>发表</span><span class="level-item"><time dateTime="2021-03-04T14:46:40.904Z" title="2021-03-04T14:46:40.904Z">2021-03-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><span class="level-item">19 分钟读完 (大约2838个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">ES使用</h1><div class="content"><h1 id="Diving-into-the-funcationality"><a href="#Diving-into-the-funcationality" class="headerlink" title="Diving into the funcationality"></a>Diving into the funcationality</h1><h2 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h2><p>ElasticSearch是面向文档的，即索引与查询的最小单元就是文档（Document）。</p>
+<pre><code>&#123;
+    &quot;name&quot;: &quot;Elasticsearch Denver&quot;,
+    &quot;organizer&quot;: &quot;Lee&quot;, 
+      &quot;location&quot;: &quot;Denver, Colorado, USA&quot;
+&#125;</code></pre>
+<p>Types是文档在逻辑上的容器，类似于表包含行一样。不同结构的文档，放在不同的type类型下面。在一个Type中，对于fields的定义，叫做映射（mapping）。类似表结构的定义。Index是types的容器，类似于数据库。整体结构如下：</p>
+<p>ES:Document—Type—Index<br>对应关系表：行—表—库</p>
+<a id="more"></a>
+
+<h2 id="物理结构"><a href="#物理结构" class="headerlink" title="物理结构"></a>物理结构</h2><p>默认情况下，Elasticsearch对于每个index分成5个shards，每个shard有一个备份。Shard是es在node间移动的最小单元。<br>Node是es的一个实例。<br>Shard是 个Lucene的索引，存储倒排索引的文件目录.</p>
+<h2 id="创建索引（index）"><a href="#创建索引（index）" class="headerlink" title="创建索引（index）"></a>创建索引（index）</h2><pre><code>“curl -XPUT &#39;localhost:9200/get-together/group/1?pretty&#39; -d &#39;&#123;
+    &quot;name&quot;: &quot;Elasticsearch Denver&quot;,
+    &quot;organizer&quot;: &quot;Lee&quot;
+&#125;”</code></pre>
+<p>使用curl命令访问es，会自动创建get-together的index，type为group，id为1的文档，其中field为name和organizer。系统会自动识别field的类型，即schema。</p>
+<p><strong>-X</strong>为指定协议类型，默认为<strong>GET</strong>。-XPUT 和-X PUT都可以</p>
+<p>/index/type/<strong>_mapping</strong>,可以查看index/type的mapping说明 </p>
+<h2 id="查找数据"><a href="#查找数据" class="headerlink" title="查找数据"></a>查找数据</h2><p>_search是查找的参数</p>
+<pre><code>curl &#39;localhost:9200/get-together/_search?q=sample&amp;pretty</code></pre>
+<p>多个index，可以用,分隔查询，<strong>_all</strong> 可以查询所有的index</p>
+<h1 id="Indexing-updating-deleting-data"><a href="#Indexing-updating-deleting-data" class="headerlink" title="Indexing, updating, deleting data"></a>Indexing, updating, deleting data</h1><p>ES中的type，只是一个抽象的概念，在同一个index中，不同的type并没有不同的物理划分，type仅仅只是document的一个field。<br>ES的三种field类型：core types、Array and multi-fields、Predefined</p>
+<h2 id="Core-Types"><a href="#Core-Types" class="headerlink" title="Core Types"></a>Core Types</h2><ul>
+<li>String</li>
+</ul>
+<p>String类型的可以进行分词处理（analyze），划分为term（即一个单词，查询的基本单位）。默认情况下，会对string类型的字符串进行分词的处理，如果不需要，可以设置：</p>
+<pre><code>&quot;index&quot;:&quot;not_analyzed&quot;</code></pre>
+<p>not_analyzed则意味着对整个字符串进行索引，不会再去其中的每个单词进行索引处理。</p>
+<ul>
+<li><p>Numeric<br>byte, short(16bit), integer, long(64bit), float, double</p>
+</li>
+<li><p>Date</p>
+</li>
+</ul>
+<p>日期type为date</p>
+<pre><code>&quot;format&quot;:&quot;MM DD YYYY&quot;</code></pre>
+<ul>
+<li>Boolean</li>
+</ul>
+<p>存储true/false</p>
+<h2 id="Arrays-and-multi-fields"><a href="#Arrays-and-multi-fields" class="headerlink" title="Arrays and multi-fields"></a>Arrays and multi-fields</h2><p>一个field中可以存储多个值，比如：</p>
+<pre><code>curl -XPUT &#39;localhost:9200/blog/posts/1&#39; -d &#39;&#123;
+    &quot;tags&quot;: [&quot;first&quot;, &quot;initial&quot;]
+&#125;</code></pre>
+<p>所有的core类型，均支持array，在不改变mapping的情况下，可以同时使用单值和多值。</p>
+<p>array与multi-field的区别：</p>
+<ul>
+<li>array是使用相同的配置索引更多的数据；</li>
+<li>multi-fields则是对相同的数据多次使用不同的配置索引；</li>
+</ul>
+<p>如对一列，可以同时设置analyzed和not_analyzed</p>
+<p>可以在不重建索引的情况下，从单field升级到multi-field，但反过来不行。</p>
+<h2 id="Pre-defined-fields"><a href="#Pre-defined-fields" class="headerlink" title="Pre-defined fields"></a>Pre-defined fields</h2><p>预定义的field均以_开头，ES来维护相关的值。主要分以下几类：</p>
+<ul>
+<li>用来控制如何存储和查询文档：_source, _all</li>
+<li>识别文档: _uid _id _type _index</li>
+<li>增加新的属性: _size _timestamp _ttl</li>
+<li>控制shard: _routing _parent</li>
+</ul>
+<h2 id="update与delete"><a href="#update与delete" class="headerlink" title="update与delete"></a>update与delete</h2><p>使用_update进行数据更新</p>
+<pre><code>“ curl -XPOST &#39;localhost:9200/get-together/group/2/_update&#39; -d &#39;&#123;
+&quot;doc&quot;: &#123;
+&quot;organizer&quot;: &quot;Roy&quot;
+    &#125;
+&#125;&#39;</code></pre>
+<p>删除单个文档：</p>
+<pre><code>“curl -XDELETE &#39;localhost:9200/online-shop/shirts/1”</code></pre>
+<p>按条件删除type和文档</p>
+<pre><code>% curl -XDELETE &#39;localhost:9200/online-shop/shirts
+% curl -XDELETE &#39;localhost:9200/get-together/_query?q=elasticsearch</code></pre>
+<p>可以关闭、打开索引</p>
+<pre><code>curl -XPOST &#39;localhost:9200/online-shop/_close
+curl -XPOST &#39;localhost:9200/online-shop/_open</code></pre>
+<h1 id="Searching-your-data"><a href="#Searching-your-data" class="headerlink" title="Searching your data"></a>Searching your data</h1><h2 id="查询请求的结构"><a href="#查询请求的结构" class="headerlink" title="查询请求的结构"></a>查询请求的结构</h2><h3 id="指定查询的范围"><a href="#指定查询的范围" class="headerlink" title="指定查询的范围"></a>指定查询的范围</h3><p>REST查询使用_search进行数据的查询操作，可以使用GET或POST。</p>
+<pre><code>curl &#39;localhost:9000/_search&#39; -d &#39;...&#39; //查询整个集群
+curl &#39;localhost:9000/get-together/_search&#39; -d &#39;...&#39; //查询get-together索引
+curl &#39;localhost:9000/get-together/event/_search&#39; -d &#39;...&#39; //查询get-together索引下的event类型
+curl &#39;localhost:9000/_all/event/_search&#39; -d &#39;...&#39; //查询所有索引中的event类型
+curl &#39;localhost:9000/*/event/_search&#39; -d &#39;...&#39; //同上
+curl &#39;localhost:9000/get-together,other/event,group/_search&#39; -d &#39;...&#39; //在get-togher,other索引下查询event,group类型中的数据
+curl &#39;localhost:9000/+get-toge*,-get-together/_search&#39; -d &#39;...&#39; //查询所有以get-toge开头的索引里的内容，get-together索引除外</code></pre>
+<h3 id="查询请求的组成"><a href="#查询请求的组成" class="headerlink" title="查询请求的组成"></a>查询请求的组成</h3><ul>
+<li>query: 这个内容由查询DSL和过滤DSL组成，可以配置返回内容的范围等；</li>
+<li>size: 设置返回的大小</li>
+<li>from: 分页</li>
+<li>_source: 原始数据的内容，可以设定_source内容如何返回，默认会返回_source的全部内容</li>
+<li>sort: 排序</li>
+</ul>
+<p>URL-based查询请求</p>
+<pre><code>curl &#39;localhost:9000/get-together/_search?from=10&amp;size=10&#39; //分页
+curl &#39;localhost:9000/get-together/_search?sort=date:asc&#39; //按date列的升序排列
+...._source=title,date //_souce只返回title与date</code></pre>
+<p>使用q=field:keyword格式，可以指定查询某一个field中是否含有keyword</p>
+<pre><code>curl &#39;localhost:9000/get-together/_search?sort=date:asc&amp;q=title:elasticsearch</code></pre>
+<p>Body-based查询请求</p>
+<pre><code>curl &#39;localhost:9000/get-together/_search&#39; -d &#39;&#123;
+    &quot;query&quot;: &#123;
+           &quot;match_all&quot;:&#123;&#125;
+    &#125;,
+    &quot;from&quot;:10,
+    &quot;size&quot;:10
+&#125;&#39;</code></pre>
+<p>限制_source数据的返回，可以如下：</p>
+<pre><code>curl &#39;localhost:9000/get-together/_search&#39; -d &#39;&#123;
+    &quot;query&quot;: &#123;
+           &quot;match_all&quot;:&#123;&#125;
+    &#125;,
+    &quot;_source&quot;:[&quot;name&quot;,&quot;date&quot;]
+&#125;&#39;</code></pre>
+<p>对于_source,可以使用通配符进行限制，如name.*,还可以加include与exclude限制</p>
+<pre><code>curl &#39;localhost:9000/get-together/_search&#39; -d &#39;&#123;
+    &quot;query&quot;: &#123;
+           &quot;match_all&quot;:&#123;&#125;
+    &#125;,
+    &quot;_source&quot;:&#123;
+        &quot;include&quot;:[&quot;location.*&quot;,&quot;date&quot;],
+        &quot;exclude&quot;:[&quot;location.geolocation&quot;]
+    &#125;
+&#125;&#39;</code></pre>
+<p>同样，可以对field指定排序</p>
+<pre><code>curl &#39;localhost:9000/get-together/_search&#39; -d &#39;&#123;
+    &quot;query&quot;: &#123;
+           &quot;match_all&quot;:&#123;&#125;
+    &#125;,
+    &quot;sort&quot;:[
+        &#123;&quot;create_on&quot;:&quot;asc&quot;&#125;,
+        &#123;&quot;exclude&quot;:&quot;desc&quot;&#125;,
+        &quot;_score&quot;
+    ]
+&#125;&#39;</code></pre>
+<h3 id="响应数据的结构"><a href="#响应数据的结构" class="headerlink" title="响应数据的结构"></a>响应数据的结构</h3><p>查询数据格式如下：</p>
+<pre><code>http://192.168.99.100:32769/get-together/_search？q=title:elasticsearch&amp;_source=title,date/</code></pre>
+<p>ES返回的查询结果格式如下：</p>
+<pre><code>&#123;
+    &quot;took&quot;: 4, //查询花费的毫秒数
+    &quot;timed_out&quot;: false,  //查询的shard是否有超时现象
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 2, //多少个shard响应了这个查询
+        &quot;successful&quot;: 2, //成功响应的shard数
+        &quot;failed&quot;: 0     //失败响应的shard数
+    &#125;,
+    &quot;hits&quot;: &#123;  //符合查询的数据
+        &quot;total&quot;: 7,  //符合条件的数据数量
+        &quot;max_score&quot;: 0.9904146, //最大的相关性
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;get-together&quot;,  //index名字
+                &quot;_type&quot;: &quot;event&quot;,  //type名字
+                &quot;_id&quot;: &quot;103&quot;, //document的id
+                &quot;_score&quot;: 0.9904146, //相关性分数
+                &quot;_routing&quot;: &quot;2&quot;,
+                &quot;_parent&quot;: &quot;2&quot;,
+                &quot;_source&quot;: &#123;  //每个field中的数据
+                    &quot;title&quot;: &quot;Introduction to Elasticsearch&quot;
+                &#125;
+            &#125;
+            ,
+            &#123;
+                &quot;_index&quot;: &quot;get-together&quot;,
+                &quot;_type&quot;: &quot;event&quot;,
+                &quot;_id&quot;: &quot;105&quot;,
+                &quot;_score&quot;: 0.9904146,
+                &quot;_routing&quot;: &quot;2&quot;,
+                &quot;_parent&quot;: &quot;2&quot;,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;Elasticsearch and Logstash&quot;
+                &#125;
+            &#125;
+            ,
+            ...
+        ]
+    &#125;
+&#125;</code></pre>
+<h2 id="查询与过滤的DSL"><a href="#查询与过滤的DSL" class="headerlink" title="查询与过滤的DSL"></a>查询与过滤的DSL</h2><h3 id="Match-query-and-term-filter"><a href="#Match-query-and-term-filter" class="headerlink" title="Match query and term filter"></a>Match query and term filter</h3><p>使用<strong>match</strong>可以按条件进行结果的过滤，系统默认是match_all</p>
+<pre><code>&quot;query&quot;:&#123;
+    &quot;match&quot;:&#123;
+        &quot;title&quot;:&quot;hadoop&quot;
+    &#125;
+&#125;</code></pre>
+<p>Filter与query类似，区别在于对score的影响和查询的性能。Query会对查询计算score，而filter只会判断文档是否匹配该查询。所以，<strong>filters比正常的query查询要快</strong>，而且可以被缓存。</p>
+<pre><code>”query&quot;:&#123;
+    &quot;filtered&quot;: &#123;  //指定query的类型，是一个filtered的查询方式
+        &quot;query&quot;: &#123;
+            &quot;match&quot;: &#123;
+                &quot;title&quot;:&quot;hadoop&quot;
+            &#125;
+        &#125;,
+        &quot;filter&quot;: &#123;
+            &quot;term&quot;: &#123;
+                &quot;host&quot;: &quot;andy&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>如上所示，一个filtered查询包括两个内容，一个query和一个filter。term查询应用于所有的包含andy的document。ES通过一个bitet来判断文档是否匹配该filter。同时，bitst可以缓存起来，供下次查询时使用。</p>
+<h3 id="常用的query与filter"><a href="#常用的query与filter" class="headerlink" title="常用的query与filter"></a>常用的query与filter</h3><ul>
+<li><strong>match_all</strong></li>
+</ul>
+<p>匹配所有的documents</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;match_all&quot;:&#123;&#125;
+    &#125;
+&#125;</code></pre>
+<p>可以增加一个filter,用来限制条件</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;filtered&quot;: &#123;
+            &quot;query&quot;: &#123;
+                &quot;match_all&quot;:&#123;&#125;
+            &#125;,
+            &quot;filter&quot;: &#123;
+                ...
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<ul>
+<li><strong>query_string</strong></li>
+</ul>
+<p>query_string在URL-based方式中,是以q=xxx的格式调用,而在body请求中,格式如下:</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;query_string&quot;: &#123;
+            &quot;query&quot;: &quot;nosql&quot;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>默认情况下,query_string查询_all field,如果想指定列,可以使用如description:nosql的形式,或使用default_field指定:</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;query_string&quot;: &#123;
+            &quot;default_field&quot;:&quot;description&quot;,
+            &quot;query&quot;: &quot;nosql&quot;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>查询条件可以使用AND,OR(<strong>必须大写</strong>)进行组合,还可以使用-限制条件,如:</p>
+<pre><code>name:nosql AND -description:mongodb</code></pre>
+<p>query_string功能比较强大,不建议开放给用户直接使用.</p>
+<ul>
+<li><strong>term query and term filter</strong></li>
+</ul>
+<p>这种方式可以让用户直接指定field和term进行查询操作(只针对没有analyzed的精确查询)</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;term&quot;: &#123;
+            &quot;tags&quot;: &quot;Elasticsearch&quot;
+        &#125;
+    &#125;,
+    &quot;_source&quot;:[&quot;name&quot;,&quot;tags&quot;]
+&#125;</code></pre>
+<p>term filter可以用来限制文档的结果,由于不计算score,可以使用match_all来配合:</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;filtered&quot;: &#123;
+            &quot;query&quot;: &#123;
+                &quot;match_all&quot;: &#123;&#125;
+            &#125;,
+            &quot;filter&quot;: &#123;
+                &quot;term&quot;: &#123;
+                    &quot;tags&quot;: &quot;Elasticsearch&quot;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    &quot;_source&quot;:[&quot;name&quot;,&quot;tags&quot;]
+&#125;</code></pre>
+<ul>
+<li><strong>Terms query</strong></li>
+</ul>
+<p>terms,即多值的查询</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;term&quot;: &#123;
+            &quot;tags&quot;: [&quot;Elasticsearch&quot;, &quot;hadoop&quot;]
+        &#125;
+    &#125;,
+    &quot;_source&quot;:[&quot;name&quot;,&quot;tags&quot;]
+&#125;</code></pre>
+<p>可以使用minimum_should_match参数,去指定最少匹配的term数量</p>
+<h3 id="Match-query-and-term-filter-1"><a href="#Match-query-and-term-filter-1" class="headerlink" title="Match query and term filter"></a>Match query and term filter</h3><p>match查询也可以像query查询一样,指定一个field或者使用_all来进行查询.Match查询一般有不同的方式,主要分为两种:boolean和phrase.</p>
+<ul>
+<li>boolean查询方式</li>
+</ul>
+<p>默认情况下,match查询使用Boolean行为和OR的操作,如查询”Elasticsearch Denver”,则会使用Elasticsearch OR Denver的或方式,命中其中之一即可.<br>如果要使用AND关系,则需要手工指定:<br>    {<br>        “query”: {<br>            “match”: {<br>                “name”: {<br>                    “query”: “Elasticsearch Denver”,<br>                    “operator”: “and”<br>                }<br>            }<br>        }<br>    }</p>
+<ul>
+<li>phrase查询方式</li>
+</ul>
+<p>如果想要查询的词组中,有一些记不清的情况,可以使用phrase方式,通过设定单词之间的slop,来进行查询. <strong>Slop的默认值为0</strong>,即中间不含有其它单词(精确查询).</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;match&quot;: &#123;
+            &quot;name&quot;: &#123;
+                &quot;type&quot;: &quot;phrase&quot;,
+                &quot;query&quot;: &quot;Elasticsearch Denver&quot;,
+                &quot;slop&quot;: 1
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>上面的例子,就是查询Elasticsearch xxxxx Denver,返回符合要求的结果.</p>
+<h3 id="Phrase-prefix-query"><a href="#Phrase-prefix-query" class="headerlink" title="Phrase_prefix query"></a>Phrase_prefix query</h3><p>match_phrase_prefix查询,允许对查询内容的最后一项进行前缀的匹配. 常应用于搜索框的自动完成功能.</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;match&quot;: &#123;
+            &quot;name&quot;: &#123;
+                &quot;type&quot;: &quot;phrase_prefix&quot;,
+                &quot;query&quot;: &quot;Elasticsearch den&quot;,
+                &quot;max_expansions&quot;: 1
+            &#125;
+        &#125;
+    &#125;,
+    &quot;_source&quot;:[&quot;name&quot;]
+&#125;</code></pre>
+<ul>
+<li>Match multiple fields with multi_match</li>
+</ul>
+<p>multi_match允许用户跨多个field去查询一个值<br>    {<br>          “query”: {<br>            “multi_match”: {<br>              “query”: “elasticsearch hadoop”,<br>              “fields”: [ “name”, “description” ]<br>            }<br>          }<br>    }</p>
+<h2 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h2><h3 id="Bool-query"><a href="#Bool-query" class="headerlink" title="Bool query"></a>Bool query</h3><p>bool查询允许用户组合多个子查询,并对每个子查询标注<strong>must</strong>,<strong>should</strong> 或者<strong>must_not</strong>.</p>
+<ul>
+<li><p>must: 必须符合 AND关系</p>
+</li>
+<li><p>should: OR关系</p>
+</li>
+<li><p>must_not: 非关系</p>
+<p>  {</p>
+<pre><code>  &quot;query&quot;: &#123;
+      &quot;bool&quot;: &#123;
+          &quot;must&quot;: &#123;
+              &#123;
+                  &quot;term&quot;: &#123;
+                      &quot;attendees&quot;: &quot;david&quot;
+                  &#125;
+              &#125;
+          &#125;,
+          &quot;should&quot;: &#123;
+              &#123;
+                  &quot;term&quot;: &#123;
+                      &quot;ttendees&quot;: &quot;clint&quot;
+                  &#125;
+              &#125;
+          &#125;,
+          ....
+      &#125;
+  &#125;</code></pre>
+<p>  }</p>
+</li>
+</ul>
+<h3 id="Bool-filter"><a href="#Bool-filter" class="headerlink" title="Bool filter"></a>Bool filter</h3><p>利用组合filter的方法进行查询</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;filtered&quot;: &#123;
+              &quot;query&quot;: &#123;
+                &quot;match_all&quot;: &#123;&#125;
+              &#125;,
+              &quot;filter&quot;: &#123;
+                &quot;bool&quot;: &#123;
+                  &quot;must&quot;: [
+                        &#123;
+                          &quot;term&quot;: &#123;
+                                &quot;attendees&quot;: &quot;david&quot;
+                          &#125;
+                        &#125;
+                  ],
+                  &quot;should&quot;: [
+                        &#123;
+                          &quot;term&quot;: &#123;
+                                &quot;attendees&quot;: &quot;clint”
+                          &#125;
+                        &#125;,
+                        &#123;
+                          &quot;term&quot;: &#123;
+                                &quot;attendees&quot;: &quot;andy&quot;
+                          &#125;
+                        &#125;
+                  ],
+                  &quot;must_not&quot;: [
+                        &#123;
+                          &quot;range&quot; :&#123;
+                                &quot;date&quot;: &#123;
+                                  &quot;lt&quot;: &quot;2013-06-30T00:00&quot;
+                                &#125;
+                          &#125;
+                        &#125;
+                  ]
+                &#125;
+              &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h2 id="超越match和filter查询"><a href="#超越match和filter查询" class="headerlink" title="超越match和filter查询"></a>超越match和filter查询</h2><h3 id="范围查询和filter"><a href="#范围查询和filter" class="headerlink" title="范围查询和filter"></a>范围查询和filter</h3><p>针对数字、日期甚至字符串指定一个范围。<br>query如下：</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;range&quot;: &#123;
+            &quot;created_on&quot;: &#123;
+                &quot;gt&quot;: &quot;2012-06-01&quot;,
+                &quot;lt&quot;: &quot;2012-09-01&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>filter如下：</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;filtered&quot;: &#123;
+            &quot;query&quot;: &#123;
+                &quot;match_all&quot;: &#123;&#125;
+            &#125;,
+            &quot;filter&quot;: &#123;
+                &quot;range&quot;: &#123;
+                    &quot;created_on&quot;: &#123;
+                        &quot;gt&quot;: &quot;2012-06-01&quot;,
+                        &quot;lt&quot;: &quot;2012-09-01&quot;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>gt: 大于<br>gte：大于等于<br>lt：小于<br>lte：小于等于</p>
+<h3 id="前缀查询和filter"><a href="#前缀查询和filter" class="headerlink" title="前缀查询和filter"></a>前缀查询和filter</h3><p>使用prefix查询可以查找没有analyzed的前缀</p>
+<pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;prefix&quot;: &#123;
+            &quot;title&quot;: &quot;liber&quot;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h3 id="通配符查询"><a href="#通配符查询" class="headerlink" title="通配符查询"></a>通配符查询</h3><pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;wildcard&quot;: &#123;
+            &quot;title&quot;: &#123;
+                &quot;wildcard&quot;: &quot;ba*n&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h2 id="查询field（存在filter）"><a href="#查询field（存在filter）" class="headerlink" title="查询field（存在filter）"></a>查询field（存在filter）</h2><h3 id="存在的filter"><a href="#存在的filter" class="headerlink" title="存在的filter"></a>存在的filter</h3><pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;filtered&quot;: &#123;
+              &quot;query&quot;: &#123;
+                &quot;match_all&quot;: &#123;&#125;
+              &#125;,
+              &quot;filter&quot;: &#123;
+                &quot;exists&quot;: &#123; &quot;field&quot;: &quot;location.geolocation&quot; &#125;
+             &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h3 id="遗漏的filter"><a href="#遗漏的filter" class="headerlink" title="遗漏的filter"></a>遗漏的filter</h3><pre><code>&#123;
+    &quot;query&quot;: &#123;
+        &quot;filtered&quot;: &#123;
+              &quot;query&quot;: &#123;
+                &quot;match_all&quot;: &#123;&#125;
+              &#125;,
+              &quot;filter&quot;: &#123;
+                &quot;missing&quot;: &#123; 
+                    &quot;field&quot;: &quot;reviews&quot;,
+                    &quot;existence&quot;: true,
+                    &quot;null_value&quot;: true
+                &#125;
+             &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h2 id="选择合适的查询方式"><a href="#选择合适的查询方式" class="headerlink" title="选择合适的查询方式"></a>选择合适的查询方式</h2><table>
+<thead>
+<tr>
+<th>User Case</th>
+<th>Query type to use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>You want to take input from a user, similar to a Google-style interface, and search for documents with the input.</td>
+<td>Use a match query or the simple_query_string query if you want to support +/- and search in specific fields.</td>
+</tr>
+<tr>
+<td>You want to take input as a phrase and search for documents containing that phrase, perhaps with some amount of leniency (slop).</td>
+<td>Use a match_phrase query with an amount of slop to find phrases similar to what the user is searching for.”</td>
+</tr>
+<tr>
+<td>You want to combine many different searches or types of searches, creating a single search out of them.</td>
+<td>Use the bool query to combine any number of subqueries into a single query.</td>
+</tr>
+<tr>
+<td>You want to search for certain words across many fields in a document.</td>
+<td>Use the multi_match query, which behaves similarly to the match query but on multiple fields.</td>
+</tr>
+<tr>
+<td>You want to return every document from a search.</td>
+<td>Use the match_all query to return all documents from a search.</td>
+</tr>
+<tr>
+<td>You want to search a field for values that are between two specified values.</td>
+<td>Use a range query to search within documents with values between a certain range.</td>
+</tr>
+<tr>
+<td>You want to search a field for values that start with a specified string.</td>
+<td>Use a prefix query to search for terms starting with a given string.</td>
+</tr>
+<tr>
+<td>You want to autocomplete the value of a single word based on what the user has already typed in.</td>
+<td>Use a prefix query to send what the user has typed in and get back exact matches starting with the text.</td>
+</tr>
+<tr>
+<td>You want to search for all documents that have no value for a specified field.</td>
+<td>Use the missing filter to filter out documents that are missing fields.</td>
+</tr>
+</tbody></table>
+</div><div class="article-licensing box"><div class="licensing-title"><p>ES使用</p><p><a href="https://www.ovasty.com/posts/es.html">https://www.ovasty.com/posts/es.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>ovasty</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-03-04</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-04</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a><a class="link-muted mr-2" rel="tag" href="/tags/elasticsearch/">elasticsearch</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=600794edc6ae2f001213eb36&amp;product=inline-share-buttons" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/ifprofilevalue.html"><span class="level-item">利用IfProfileValue注解标集成测试用例</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="ovasty"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">ovasty</p><p class="is-size-6 is-block">面子和里子</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">22</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">33</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ovasty" target="_blank" rel="noopener">关注我</a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">iCarus</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E4%BA%A7%E5%93%81/"><span class="level-start"><span class="level-item">产品</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="level-start"><span class="level-item">大数据</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"><span class="level-start"><span class="level-item">数据分析</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%B5%8B%E8%AF%95%E9%9B%86%E6%88%90/"><span class="level-start"><span class="level-item">测试集成</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/"><span class="level-start"><span class="level-item">经验汇总</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"><span class="level-start"><span class="level-item">软件工程</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-04T14:43:06.000Z">2021-03-04</time></p><p class="title"><a href="/posts/es.html">ES使用</a></p><p class="categories"><a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-01T15:07:48.000Z">2021-03-01</time></p><p class="title"><a href="/posts/ifprofilevalue.html">利用IfProfileValue注解标集成测试用例</a></p><p class="categories"><a href="/categories/%E6%B5%8B%E8%AF%95%E9%9B%86%E6%88%90/">测试集成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-02-27T01:57:06.000Z">2021-02-27</time></p><p class="title"><a href="/posts/xfsrepair.html">Linux xfs文件系统修复</a></p><p class="categories"><a href="/categories/%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/">经验汇总</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-02-19T14:55:39.000Z">2021-02-19</time></p><p class="title"><a href="/posts/ftpauthorization.html">FTP权限配置</a></p><p class="categories"><a href="/categories/%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/">经验汇总</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-02-18T15:34:15.000Z">2021-02-18</time></p><p class="title"><a href="/posts/hbasereaddata.html">HBase获取数据性能对比</a></p><p class="categories"><a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/B%E7%AB%AF/"><span class="tag">B端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/R/"><span class="tag">R</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/aliyun/"><span class="tag">aliyun</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/centos/"><span class="tag">centos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/elasticsearch/"><span class="tag">elasticsearch</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/flume/"><span class="tag">flume</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ftp/"><span class="tag">ftp</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hbase/"><span class="tag">hbase</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/kafka/"><span class="tag">kafka</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/kerberos/"><span class="tag">kerberos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ldap/"><span class="tag">ldap</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/maven/"><span class="tag">maven</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mysql/"><span class="tag">mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scala/"><span class="tag">scala</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/shell/"><span class="tag">shell</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/snapshot/"><span class="tag">snapshot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tag/"><span class="tag">tag</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/xfs/"><span class="tag">xfs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%A7%E5%93%81/"><span class="tag">产品</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"><span class="tag">函数式编程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="tag">分布式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"><span class="tag">单元测试</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="tag">大数据</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"><span class="tag">数据分析</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B5%81%E7%A8%8B/"><span class="tag">流程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B5%8B%E8%AF%95/"><span class="tag">测试</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"><span class="tag">版本控制</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA/"><span class="tag">用户行为</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/"><span class="tag">集成测试</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="面子和里子 - 大数据,分布式,数据仓库,人工智能,数字化转型,hadoop,spark,flink" height="28"></a><p class="is-size-7"><span>&copy; 2021 ovasty</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
