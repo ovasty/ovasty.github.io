@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://www.ovasty.com/posts/dw2.html</loc>
+        <lastmod>2021-03-19T15:00:25.909Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.ovasty.com/posts/dw1.html</loc>
         <lastmod>2021-03-09T15:03:21.784Z</lastmod>
         <changefreq>weekly</changefreq>
