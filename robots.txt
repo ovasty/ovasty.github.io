@@ -1,3 +1,7 @@
 # robots.txt
 User-agent: *
 Allow: /
+
+sitemap: https://ovasty.gitee.io/baidusitemap.xml
+sitemap: https://ovasty.com/baidusitemap.xml
+sitemap: https://www.ovasty.com/baidusitemap.xml
